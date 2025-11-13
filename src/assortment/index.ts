@@ -5,6 +5,7 @@ export { updateAssortment } from './update-assortment';
 export { deleteAssortment } from './delete-assortment';
 export { addItemToAssortment } from './add-item-to-assortment';
 export { removeItemFromAssortment } from './remove-item-from-assortment';
-export { getAssortmentItems } from './get-assortment-items';
+export { addItemsToAssortment } from './add-items-to-assortment';
+export { removeItemsFromAssortment } from './remove-items-from-assortment';
 export { batchAssortmentItems } from './batch-assortment-items';
 export { getAssortmentLog } from './get-assortment-log';
