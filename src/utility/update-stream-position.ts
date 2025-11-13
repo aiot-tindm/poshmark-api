@@ -1,0 +1,28 @@
+import { publishRequest } from '../request/publish-request';
+import { PoshmarkRequestConfig } from '../validators/auth';
+import * as t from 'io-ts';
+
+/**
+ * Update stream position
+ *
+ * @see https://api.dsco.io/api/v3/stream/{id}/{partitionId}/{position}
+ *
+ * @param config - Request configuration with access token
+ * @param id - The stream ID
+ * @param partitionId - The partition ID
+ * @param position - The position to update to
+ * @returns The update result
+ */
+export async function updateStreamPosition(
+  config: PoshmarkRequestConfig,
+  id: string,
+  partitionId: string,
+  position: string,
+): Promise<unknown> {
+  return publishRequest(config.baseUri, {
+    method: 'PUT',
+    path: `/stream/${id}/${partitionId}/${position}`,
+    accessToken: config.access_token,
+    outputCodec: t.unknown,
+  });
+}

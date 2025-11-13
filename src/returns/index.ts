@@ -1,3 +1,5 @@
+export { createReturn } from './create-return';
+export { completeReturn } from './complete-return';
 export { getReturn } from './get-return';
 export { getReturnPage } from './get-return-page';
 export { batchSmallReturn } from './batch-small-return';

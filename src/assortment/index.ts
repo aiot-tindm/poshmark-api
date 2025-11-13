@@ -8,4 +8,5 @@ export { removeItemFromAssortment } from './remove-item-from-assortment';
 export { addItemsToAssortment } from './add-items-to-assortment';
 export { removeItemsFromAssortment } from './remove-items-from-assortment';
 export { batchAssortmentItems } from './batch-assortment-items';
+export { removeBatchAssortmentItems } from './remove-batch-assortment-items';
 export { getAssortmentLog } from './get-assortment-log';
