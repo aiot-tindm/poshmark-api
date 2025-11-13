@@ -1,6 +1,4 @@
 # Dependencies
-node_modules/
-package-lock.json
 yarn.lock
 
 # Build outputs
@@ -10,6 +8,8 @@ build/
 *.d.ts
 *.js.map
 !jest.config.js
+!.prettierrc.js
+!babel.config.js
 
 # Testing
 coverage/

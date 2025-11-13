@@ -1,0 +1,9 @@
+src/
+examples/
+.github/
+.prettierrc.js
+babel.config.js
+./tsconfig.json
+.eslintignore
+.eslintrc.json
+.vscode
