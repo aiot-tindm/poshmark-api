@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { Assortment, AssortmentC } from '../validators/assortment';
 
 /**
@@ -12,7 +12,7 @@ import { Assortment, AssortmentC } from '../validators/assortment';
  * @returns Assortment data
  */
 export async function getAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
 ): Promise<Assortment> {
   return publishRequest<never, Assortment>(config.baseUri, {

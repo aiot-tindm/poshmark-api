@@ -1,11 +1,11 @@
 import { refreshToken } from './refresh-token';
 import { getToken } from './get-token';
-import { BasePoshmarkConfig, StoredToken } from '../validators/auth';
+import { BaseDscoConfig, StoredToken } from '../validators/auth';
 
 jest.mock('./get-token');
 
 describe('refreshToken', () => {
-  const mockConfig: BasePoshmarkConfig = {
+  const mockConfig: BaseDscoConfig = {
     baseUri: 'https://api.dsco.io/api/v3',
     client_id: 'test-client-id',
     client_secret: 'test-client-secret',

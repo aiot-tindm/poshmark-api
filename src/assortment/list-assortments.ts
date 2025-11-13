@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 import { AssortmentC } from '../validators/assortment';
 
@@ -11,7 +11,7 @@ import { AssortmentC } from '../validators/assortment';
  * @param config - Request configuration with access token
  * @returns Array of assortments
  */
-export async function listAssortments(config: PoshmarkRequestConfig): Promise<unknown[]> {
+export async function listAssortments(config: DscoRequestConfig): Promise<unknown[]> {
   return publishRequest(config.baseUri, {
     method: 'GET',
     path: '/assortment',

@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  * @returns The updated function
  */
 export async function updateFunction(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   functionId: string,
   functionData: unknown,
 ): Promise<unknown> {

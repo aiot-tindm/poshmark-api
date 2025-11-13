@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  * @returns Pay statement data
  */
 export async function getPayStatement(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   statementId: string,
   params?: Record<string, string | number>,
 ): Promise<unknown> {

@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   BatchCatalogRequest,
   BatchCatalogRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Batch catalog response
  */
 export async function batchLargeCatalog(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: BatchCatalogRequest,
 ): Promise<CatalogResponse> {
   return publishRequest<BatchCatalogRequest, CatalogResponse>(config.baseUri, {

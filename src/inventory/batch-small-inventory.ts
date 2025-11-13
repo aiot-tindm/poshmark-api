@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   UpdateInventoryRequest,
   UpdateInventoryRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Batch inventory response
  */
 export async function batchSmallInventory(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: UpdateInventoryRequest,
 ): Promise<InventoryResponse> {
   return publishRequest<UpdateInventoryRequest, InventoryResponse>(config.baseUri, {

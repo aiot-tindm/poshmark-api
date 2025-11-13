@@ -1,11 +1,11 @@
 import { createPackingSlip } from './create-packing-slip';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
 
 describe('createPackingSlip', () => {
-  const mockConfig: PoshmarkRequestConfig = {
+  const mockConfig: DscoRequestConfig = {
     baseUri: 'https://api.dsco.io/api/v3',
     client_id: 'test-client',
     client_secret: 'test-secret',

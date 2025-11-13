@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -10,7 +10,7 @@ import * as t from 'io-ts';
  * @param config - Request configuration with access token
  * @returns Health check response
  */
-export async function hello(config: PoshmarkRequestConfig): Promise<unknown> {
+export async function hello(config: DscoRequestConfig): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'GET',
     path: '/hello',

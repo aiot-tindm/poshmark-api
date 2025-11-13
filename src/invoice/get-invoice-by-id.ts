@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -12,7 +12,7 @@ import * as t from 'io-ts';
  * @returns Invoice data
  */
 export async function getInvoiceById(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   params: Record<string, string | number>,
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {

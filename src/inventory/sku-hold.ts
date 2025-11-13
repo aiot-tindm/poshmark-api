@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { SkuHoldRequest, SkuHoldRequestC, SkuHoldResponse, SkuHoldResponseC } from '../validators/inventory';
 
 /**
@@ -12,7 +12,7 @@ import { SkuHoldRequest, SkuHoldRequestC, SkuHoldResponse, SkuHoldResponseC } fr
  * @returns SKU hold response
  */
 export async function skuHold(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: SkuHoldRequest,
 ): Promise<SkuHoldResponse> {
   return publishRequest<SkuHoldRequest, SkuHoldResponse>(config.baseUri, {

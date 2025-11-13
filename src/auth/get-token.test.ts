@@ -1,11 +1,11 @@
 import { getToken } from './get-token';
-import { BasePoshmarkConfig } from '../validators/auth';
+import { BaseDscoConfig } from '../validators/auth';
 
 // Mock node-fetch
 jest.mock('node-fetch');
 
 describe('getToken', () => {
-  const mockConfig: BasePoshmarkConfig = {
+  const mockConfig: BaseDscoConfig = {
     baseUri: 'https://api.dsco.io/api/v3',
     client_id: 'test-client-id',
     client_secret: 'test-client-secret',
@@ -53,6 +53,6 @@ describe('getToken', () => {
       client_secret: 'test',
     };
 
-    await expect(getToken(invalidConfig as BasePoshmarkConfig)).rejects.toThrow();
+    await expect(getToken(invalidConfig as BaseDscoConfig)).rejects.toThrow();
   });
 });

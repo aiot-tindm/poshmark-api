@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   AddItemToAssortmentRequest,
   AddItemToAssortmentRequestC,
@@ -18,7 +18,7 @@ import {
  * @returns Success response
  */
 export async function addItemToAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   request: AddItemToAssortmentRequest,
 ): Promise<AddItemToAssortmentResponse> {

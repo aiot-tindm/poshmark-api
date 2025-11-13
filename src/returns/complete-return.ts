@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -12,7 +12,7 @@ import * as t from 'io-ts';
  * @returns The completed return
  */
 export async function completeReturn(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   returnData: unknown,
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {

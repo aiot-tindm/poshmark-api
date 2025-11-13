@@ -1,6 +1,6 @@
-# poshmark-api
+# dsco-api
 
-TypeScript library for integrating with the DSCO Platform API (v3) by Rithum for Poshmark marketplace operations.
+TypeScript library for integrating with the DSCO Platform API (v3) by Rithum .
 
 ## Features
 
@@ -15,13 +15,13 @@ TypeScript library for integrating with the DSCO Platform API (v3) by Rithum for
 ## Installation
 
 ```bash
-npm install poshmark-api
+npm install dsco-api
 ```
 
 ## Quick Start
 
 ```typescript
-import { getToken, createAssortment, getOrder } from 'poshmark-api';
+import { getToken, createAssortment, getOrder } from 'dsco-api';
 
 // 1. Get OAuth2 access token
 const config = {
@@ -51,9 +51,9 @@ const order = await getOrder(requestConfig, 'order-123');
 ### Getting an Access Token
 
 ```typescript
-import { getToken, BasePoshmarkConfig } from 'poshmark-api';
+import { getToken, BaseDscoConfig } from 'dsco-api';
 
-const config: BasePoshmarkConfig = {
+const config: BaseDscoConfig = {
   baseUri: 'https://api.dsco.io/api/v3',
   client_id: 'your-client-id',
   client_secret: 'your-client-secret',
@@ -66,7 +66,7 @@ const tokenInfo = await getToken(config);
 ### Token Refresh
 
 ```typescript
-import { refreshToken } from 'poshmark-api';
+import { refreshToken } from 'dsco-api';
 
 // Automatically refreshes if expired or about to expire (within 60 seconds)
 const tokenInfo = await refreshToken(config, currentToken);
@@ -77,7 +77,7 @@ const tokenInfo = await refreshToken(config, currentToken);
 ### Assortment Management
 
 ```typescript
-import { createAssortment, getAssortmentLog } from 'poshmark-api';
+import { createAssortment, getAssortmentLog } from 'dsco-api';
 
 // Create assortment
 const assortment = await createAssortment(requestConfig, {
@@ -96,7 +96,7 @@ import {
   batchSmallCatalog,
   batchLargeCatalog,
   getCatalogLog,
-} from 'poshmark-api';
+} from 'dsco-api';
 
 // Create catalog entries
 await createCatalog(requestConfig, {
@@ -124,7 +124,7 @@ import {
   acknowledgeOrder,
   singleShipment,
   batchShipment,
-} from 'poshmark-api';
+} from 'dsco-api';
 
 // Get single order
 const order = await getOrder(requestConfig, 'order-key-123');
@@ -151,7 +151,7 @@ import {
   batchSmallInventory,
   batchLargeInventory,
   getInventoryLog,
-} from 'poshmark-api';
+} from 'dsco-api';
 
 // Update inventory
 await batchSmallInventory(requestConfig, {
@@ -192,7 +192,7 @@ import {
   TooManyRequestsError,
   ValidationError,
   TransportError,
-} from 'poshmark-api';
+} from 'dsco-api';
 
 try {
   const order = await getOrder(requestConfig, 'invalid-order-key');
@@ -219,7 +219,7 @@ try {
 The library includes automatic retry logic with exponential backoff:
 
 ```typescript
-import { concurrentRetryRequest } from 'poshmark-api';
+import { concurrentRetryRequest } from 'dsco-api';
 
 const result = await concurrentRetryRequest(
   async () => {
@@ -240,7 +240,7 @@ const result = await concurrentRetryRequest(
 All API requests and responses are fully typed using io-ts for runtime validation:
 
 ```typescript
-import { CreateAssortmentRequest, CreateAssortmentResponse } from 'poshmark-api';
+import { CreateAssortmentRequest, CreateAssortmentResponse } from 'dsco-api';
 
 const request: CreateAssortmentRequest = {
   name: 'My Assortment',
@@ -312,7 +312,7 @@ MIT
 ## Support
 
 For issues and questions:
-- GitHub Issues: [Create an issue](https://github.com/your-repo/poshmark-api/issues)
+- GitHub Issues: [Create an issue](https://github.com/your-repo/dsco-api/issues)
 - DSCO Support: [Contact Support](https://knowledge.rithum.com/s/contactsupport)
 
 ## Contributing

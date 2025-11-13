@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   SingleShipmentRequest,
   SingleShipmentRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Shipment response
  */
 export async function singleShipment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: SingleShipmentRequest,
 ): Promise<ShipmentResponse> {
   return publishRequest<SingleShipmentRequest, ShipmentResponse>(config.baseUri, {

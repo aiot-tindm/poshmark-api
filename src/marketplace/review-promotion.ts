@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  * @returns Review promotion response
  */
 export async function reviewPromotion(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   promotionId: string,
   request: unknown,
 ): Promise<unknown> {

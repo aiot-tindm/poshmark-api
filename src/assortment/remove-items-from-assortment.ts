@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-validation';
 import * as t from 'io-ts';
 
@@ -35,7 +35,7 @@ export type BulkRemoveItemsRequest = t.TypeOf<typeof BulkRemoveItemsRequestC>;
  * @returns Success response
  */
 export async function removeItemsFromAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   request: BulkRemoveItemsRequest,
 ): Promise<SuccessFailResponse> {

@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { GetOrderResponse, GetOrderResponseC } from '../validators/orders/order';
 
 /**
@@ -12,7 +12,7 @@ import { GetOrderResponse, GetOrderResponseC } from '../validators/orders/order'
  * @returns Order information
  */
 export async function getOrder(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   orderKey: string,
 ): Promise<GetOrderResponse> {
   return publishRequest<never, GetOrderResponse>(config.baseUri, {

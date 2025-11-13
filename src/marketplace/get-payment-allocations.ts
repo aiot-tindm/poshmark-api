@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  * @returns Payment allocations data
  */
 export async function getPaymentAllocations(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   paymentId: string,
   params?: Record<string, string | number>,
 ): Promise<unknown> {

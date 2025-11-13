@@ -1,8 +1,8 @@
 /**
- * poshmark-api - TypeScript library for DSCO Platform API (v3) by Rithum
+ * dsco-api - TypeScript library for DSCO Platform API (v3) by Rithum
  *
  * This library provides a comprehensive TypeScript interface for interacting
- * with the DSCO Platform API for Poshmark marketplace operations.
+ * with the DSCO Platform API for marketplace operations.
  *
  * @packageDocumentation
  */

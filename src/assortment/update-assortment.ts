@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { Assortment, AssortmentC, SuccessFailResponseC } from '../validators/assortment';
 import { SuccessFailResponse } from '../validators/common-validation';
 
@@ -14,7 +14,7 @@ import { SuccessFailResponse } from '../validators/common-validation';
  * @returns Success response
  */
 export async function updateAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   assortment: Assortment,
 ): Promise<SuccessFailResponse> {

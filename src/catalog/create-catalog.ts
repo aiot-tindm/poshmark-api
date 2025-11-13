@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   CreateCatalogRequest,
   CreateCatalogRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Catalog creation response
  */
 export async function createCatalog(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: CreateCatalogRequest,
 ): Promise<CatalogResponse> {
   return publishRequest<CreateCatalogRequest, CatalogResponse>(config.baseUri, {

@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  * @returns The updated promotion
  */
 export async function updatePromotion(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   promotionId: string,
   promotion: unknown,
 ): Promise<unknown> {

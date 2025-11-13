@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -12,7 +12,7 @@ import * as t from 'io-ts';
  * @returns Batch invoice response
  */
 export async function batchSmallInvoice(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: unknown,
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {

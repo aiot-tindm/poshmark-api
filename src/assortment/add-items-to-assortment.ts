@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-validation';
 import * as t from 'io-ts';
 
@@ -35,7 +35,7 @@ export type BulkAddItemsRequest = t.TypeOf<typeof BulkAddItemsRequestC>;
  * @returns Success response
  */
 export async function addItemsToAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   request: BulkAddItemsRequest,
 ): Promise<SuccessFailResponse> {

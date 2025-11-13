@@ -3,8 +3,8 @@ import { createEndpointUri } from '../request/create-endpoint-uri';
 import { validate } from '../util/validator';
 import { getCurrentTimestamp } from '../util/time';
 import {
-  BasePoshmarkConfig,
-  BasePoshmarkConfigC,
+  BaseDscoConfig,
+  BaseDscoConfigC,
   OAuth2TokenResponse,
   OAuth2TokenResponseC,
   StoredToken,
@@ -19,9 +19,9 @@ import { AuthError } from '../errors';
  * @param config - Base configuration with client credentials
  * @returns Token information including access token and expiration
  */
-export async function getToken(config: BasePoshmarkConfig): Promise<StoredToken> {
+export async function getToken(config: BaseDscoConfig): Promise<StoredToken> {
   // Validate config
-  const validatedConfig = validate(BasePoshmarkConfigC, config, 'Invalid configuration');
+  const validatedConfig = validate(BaseDscoConfigC, config, 'Invalid configuration');
 
   const { baseUri, client_id, client_secret } = validatedConfig;
 

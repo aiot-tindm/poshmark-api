@@ -1,5 +1,5 @@
 import { publishRequest } from '../../request/publish-request';
-import { PoshmarkRequestConfig } from '../../validators/auth';
+import { DscoRequestConfig } from '../../validators/auth';
 import {
   BatchCatalogOverridesRequest,
   BatchCatalogOverridesRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Batch overrides response
  */
 export async function batchLargeOverrides(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: BatchCatalogOverridesRequest,
 ): Promise<CatalogResponse> {
   return publishRequest<BatchCatalogOverridesRequest, CatalogResponse>(config.baseUri, {

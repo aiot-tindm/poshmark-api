@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  * @returns Stream data
  */
 export async function getStream(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   params?: Record<string, string | number>,
 ): Promise<unknown> {
@@ -38,7 +38,7 @@ export async function getStream(
  * @returns Stream partition data
  */
 export async function getStreamPartitionPosition(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   partitionId: string,
   position: string,
@@ -64,7 +64,7 @@ export async function getStreamPartitionPosition(
  * @returns Stream partition range data
  */
 export async function getStreamPartitionRange(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   partitionId: string,
   startPosition: string,
@@ -90,7 +90,7 @@ export async function getStreamPartitionRange(
  * @returns Single stream partition data
  */
 export async function getSingleStreamPartitionPosition(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   partitionId: string,
   position: string,

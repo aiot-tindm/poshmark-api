@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   CreateAssortmentRequest,
   CreateAssortmentRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Created assortment with ID
  */
 export async function createAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: CreateAssortmentRequest,
 ): Promise<CreateAssortmentResponse> {
   return publishRequest<CreateAssortmentRequest, CreateAssortmentResponse>(config.baseUri, {

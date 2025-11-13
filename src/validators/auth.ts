@@ -2,27 +2,27 @@ import * as t from 'io-ts';
 import { BaseUriC, NonEmptyStringC } from './common-validation';
 
 /**
- * Base Poshmark/DSCO configuration
+ * Base DSCO configuration
  */
-export const BasePoshmarkConfigC = t.type({
+export const BaseDscoConfigC = t.type({
   baseUri: BaseUriC,
   client_id: NonEmptyStringC,
   client_secret: NonEmptyStringC,
 });
 
-export type BasePoshmarkConfig = t.TypeOf<typeof BasePoshmarkConfigC>;
+export type BaseDscoConfig = t.TypeOf<typeof BaseDscoConfigC>;
 
 /**
- * Poshmark request configuration (includes access token)
+ * DSCO request configuration (includes access token)
  */
-export const PoshmarkRequestConfigC = t.intersection([
-  BasePoshmarkConfigC,
+export const DscoRequestConfigC = t.intersection([
+  BaseDscoConfigC,
   t.type({
     access_token: NonEmptyStringC,
   }),
 ]);
 
-export type PoshmarkRequestConfig = t.TypeOf<typeof PoshmarkRequestConfigC>;
+export type DscoRequestConfig = t.TypeOf<typeof DscoRequestConfigC>;
 
 /**
  * OAuth2 token request

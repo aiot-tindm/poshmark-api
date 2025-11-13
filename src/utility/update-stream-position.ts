@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -14,7 +14,7 @@ import * as t from 'io-ts';
  * @returns The update result
  */
 export async function updateStreamPosition(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
   partitionId: string,
   position: string,

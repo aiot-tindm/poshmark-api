@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   AcknowledgeOrderRequest,
   AcknowledgeOrderRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Acknowledge order response
  */
 export async function acknowledgeOrder(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: AcknowledgeOrderRequest,
 ): Promise<AcknowledgeOrderResponse> {
   return publishRequest<AcknowledgeOrderRequest, AcknowledgeOrderResponse>(config.baseUri, {

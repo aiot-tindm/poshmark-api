@@ -1,6 +1,6 @@
 import { getToken } from './get-token';
 import { isExpired } from '../util/time';
-import { BasePoshmarkConfig, StoredToken } from '../validators/auth';
+import { BaseDscoConfig, StoredToken } from '../validators/auth';
 
 /**
  * Refresh access token if expired or about to expire
@@ -11,7 +11,7 @@ import { BasePoshmarkConfig, StoredToken } from '../validators/auth';
  * @returns New token if refreshed, or current token if still valid
  */
 export async function refreshToken(
-  config: BasePoshmarkConfig,
+  config: BaseDscoConfig,
   currentToken?: StoredToken,
   bufferSeconds = 60,
 ): Promise<StoredToken> {

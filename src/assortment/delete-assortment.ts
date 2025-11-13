@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-validation';
 
 /**
@@ -12,7 +12,7 @@ import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-
  * @returns Success response
  */
 export async function deleteAssortment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   id: string,
 ): Promise<SuccessFailResponse> {
   return publishRequest<never, SuccessFailResponse>(config.baseUri, {

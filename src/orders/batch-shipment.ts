@@ -1,5 +1,5 @@
 import { publishRequest } from '../request/publish-request';
-import { PoshmarkRequestConfig } from '../validators/auth';
+import { DscoRequestConfig } from '../validators/auth';
 import {
   BatchShipmentRequest,
   BatchShipmentRequestC,
@@ -17,7 +17,7 @@ import {
  * @returns Shipment response
  */
 export async function batchShipment(
-  config: PoshmarkRequestConfig,
+  config: DscoRequestConfig,
   request: BatchShipmentRequest,
 ): Promise<ShipmentResponse> {
   return publishRequest<BatchShipmentRequest, ShipmentResponse>(config.baseUri, {

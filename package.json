@@ -1,7 +1,7 @@
 {
-  "name": "poshmark-api",
+  "name": "dsco-api",
   "version": "1.0.0",
-  "description": "TypeScript library for integrating with DSCO Platform API (v3) by Rithum for Poshmark marketplace operations",
+  "description": "TypeScript library for integrating with DSCO Platform API (v3) by Rithum",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -14,13 +14,14 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "poshmark",
     "dsco",
     "rithum",
     "api",
     "typescript",
     "marketplace",
-    "dropship"
+    "dropship",
+    "ecommerce",
+    "integration"
   ],
   "author": "",
   "license": "MIT",
