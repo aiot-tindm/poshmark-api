@@ -1,15 +1,10 @@
 # Dependencies
-node_modules/
-package-lock.json
 yarn.lock
 
 # Build outputs
-dist/
-build/
-*.js
-*.d.ts
 *.js.map
-!jest.config.js
+
+node_modules/
 
 # Testing
 coverage/

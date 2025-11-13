@@ -1,5 +1,5 @@
-import { updateStreamPosition } from './update-stream-position';
-import { DscoRequestConfig } from '../validators/auth';
+import {updateStreamPosition} from './update-stream-position';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('updateStreamPosition', () => {
   });
 
   it('should call updateStreamPosition successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

@@ -1,5 +1,5 @@
-import { getReturn } from './get-return';
-import { DscoRequestConfig } from '../validators/auth';
+import {getReturn} from './get-return';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getReturn', () => {
   });
 
   it('should call getReturn successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

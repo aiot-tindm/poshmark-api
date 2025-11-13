@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -15,7 +15,7 @@ import * as t from 'io-ts';
 export async function getStream(
   config: DscoRequestConfig,
   id: string,
-  params?: Record<string, string | number>,
+  params?: Record<string, string | number>
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'GET',
@@ -41,7 +41,7 @@ export async function getStreamPartitionPosition(
   config: DscoRequestConfig,
   id: string,
   partitionId: string,
-  position: string,
+  position: string
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'GET',
@@ -68,7 +68,7 @@ export async function getStreamPartitionRange(
   id: string,
   partitionId: string,
   startPosition: string,
-  endPosition: string,
+  endPosition: string
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'GET',
@@ -93,7 +93,7 @@ export async function getSingleStreamPartitionPosition(
   config: DscoRequestConfig,
   id: string,
   partitionId: string,
-  position: string,
+  position: string
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'GET',

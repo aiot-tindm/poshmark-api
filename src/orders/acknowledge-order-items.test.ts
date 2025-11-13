@@ -1,5 +1,5 @@
-import { acknowledgeOrderItems } from './acknowledge-order-items';
-import { DscoRequestConfig } from '../validators/auth';
+import {acknowledgeOrderItems} from './acknowledge-order-items';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('acknowledgeOrderItems', () => {
   });
 
   it('should call acknowledgeOrderItems successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

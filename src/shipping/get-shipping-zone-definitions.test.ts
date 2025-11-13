@@ -1,5 +1,5 @@
-import { getShippingZoneDefinitions } from './get-shipping-zone-definitions';
-import { DscoRequestConfig } from '../validators/auth';
+import {getShippingZoneDefinitions} from './get-shipping-zone-definitions';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getShippingZoneDefinitions', () => {
   });
 
   it('should call getShippingZoneDefinitions successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

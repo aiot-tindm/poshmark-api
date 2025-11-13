@@ -1,6 +1,6 @@
-import { refreshToken } from './refresh-token';
-import { getToken } from './get-token';
-import { BaseDscoConfig, StoredToken } from '../validators/auth';
+import {refreshToken} from './refresh-token';
+import {getToken} from './get-token';
+import {BaseDscoConfig, StoredToken} from '../validators/auth';
 
 jest.mock('./get-token');
 

@@ -1,5 +1,5 @@
-import { getPromotionById } from './get-promotion-by-id';
-import { DscoRequestConfig } from '../validators/auth';
+import {getPromotionById} from './get-promotion-by-id';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getPromotionById', () => {
   });
 
   it('should call getPromotionById successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

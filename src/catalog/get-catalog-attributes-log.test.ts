@@ -1,5 +1,5 @@
-import { getCatalogAttributesLog } from './get-catalog-attributes-log';
-import { DscoRequestConfig } from '../validators/auth';
+import {getCatalogAttributesLog} from './get-catalog-attributes-log';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getCatalogAttributesLog', () => {
   });
 
   it('should call getCatalogAttributesLog successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

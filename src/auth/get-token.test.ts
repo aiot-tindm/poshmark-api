@@ -1,5 +1,5 @@
-import { getToken } from './get-token';
-import { BaseDscoConfig } from '../validators/auth';
+import {getToken} from './get-token';
+import {BaseDscoConfig} from '../validators/auth';
 
 // Mock node-fetch
 jest.mock('node-fetch');
@@ -43,7 +43,9 @@ describe('getToken', () => {
       text: async () => 'Invalid credentials',
     });
 
-    await expect(getToken(mockConfig)).rejects.toThrow('Failed to get access token');
+    await expect(getToken(mockConfig)).rejects.toThrow(
+      'Failed to get access token'
+    );
   });
 
   it('should validate config', async () => {

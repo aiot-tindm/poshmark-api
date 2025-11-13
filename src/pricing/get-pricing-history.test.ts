@@ -1,5 +1,5 @@
-import { getPricingHistory } from './get-pricing-history';
-import { DscoRequestConfig } from '../validators/auth';
+import {getPricingHistory} from './get-pricing-history';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getPricingHistory', () => {
   });
 
   it('should call getPricingHistory successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

@@ -1,5 +1,5 @@
-import { getRetailerWarehouses } from './get-retailer-warehouses';
-import { DscoRequestConfig } from '../validators/auth';
+import {getRetailerWarehouses} from './get-retailer-warehouses';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getRetailerWarehouses', () => {
   });
 
   it('should get retailer warehouses successfully', async () => {
-    const expectedResponse = { warehouses: [] };
+    const expectedResponse = {warehouses: []};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

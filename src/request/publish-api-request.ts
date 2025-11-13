@@ -1,6 +1,6 @@
-import { Response } from 'node-fetch';
-import { createFetchRequest } from './create-fetch-request';
-import { createEndpointUri } from './create-endpoint-uri';
+import {Response} from 'node-fetch';
+import {createFetchRequest} from './create-fetch-request';
+import {createEndpointUri} from './create-endpoint-uri';
 import {
   ApiError,
   AuthError,
@@ -8,7 +8,10 @@ import {
   TooManyRequestsError,
   MalformedApiResponse,
 } from '../errors';
-import { isDscoApiError, extractErrorMessage } from '../util/poshmark-api-error-validate';
+import {
+  isDscoApiError,
+  extractErrorMessage,
+} from '../util/poshmark-api-error-validate';
 
 export interface ApiRequestOptions {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
@@ -24,9 +27,9 @@ export interface ApiRequestOptions {
  */
 export async function publishApiRequest<T>(
   baseUri: string,
-  options: ApiRequestOptions,
+  options: ApiRequestOptions
 ): Promise<T> {
-  const { method, path, accessToken, body, headers = {}, queryParams } = options;
+  const {method, path, accessToken, body, headers = {}, queryParams} = options;
 
   // Build URL with query parameters
   let url = createEndpointUri(baseUri, path);
@@ -68,7 +71,7 @@ export async function publishApiRequest<T>(
  * Handle API response and errors
  */
 async function handleApiResponse<T>(response: Response): Promise<T> {
-  const { status, statusText } = response;
+  const {status, statusText} = response;
 
   // Handle successful responses
   if (status >= 200 && status < 300) {
@@ -82,7 +85,7 @@ async function handleApiResponse<T>(response: Response): Promise<T> {
         throw new MalformedApiResponse(
           'Failed to parse JSON response',
           await response.text(),
-          error,
+          error
         );
       }
     }
@@ -136,14 +139,20 @@ async function handleApiResponse<T>(response: Response): Promise<T> {
 
     case 429: {
       const retryAfter = response.headers.get('retry-after');
-      const retryAfterSeconds = retryAfter ? parseInt(retryAfter, 10) : undefined;
+      const retryAfterSeconds = retryAfter
+        ? parseInt(retryAfter, 10)
+        : undefined;
       throw new TooManyRequestsError(
         `Rate limit exceeded: ${errorMessage}`,
-        retryAfterSeconds,
+        retryAfterSeconds
       );
     }
 
     default:
-      throw new ApiError(`API request failed: ${errorMessage}`, status, errorData);
+      throw new ApiError(
+        `API request failed: ${errorMessage}`,
+        status,
+        errorData
+      );
   }
 }

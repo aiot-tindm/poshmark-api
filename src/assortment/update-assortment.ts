@@ -1,7 +1,11 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { Assortment, AssortmentC, SuccessFailResponseC } from '../validators/assortment';
-import { SuccessFailResponse } from '../validators/common-validation';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {
+  Assortment,
+  AssortmentC,
+  SuccessFailResponseC,
+} from '../validators/assortment';
+import {SuccessFailResponse} from '../validators/common-validation';
 
 /**
  * Update (rename) an assortment
@@ -16,7 +20,7 @@ import { SuccessFailResponse } from '../validators/common-validation';
 export async function updateAssortment(
   config: DscoRequestConfig,
   id: string,
-  assortment: Assortment,
+  assortment: Assortment
 ): Promise<SuccessFailResponse> {
   return publishRequest<Assortment, SuccessFailResponse>(config.baseUri, {
     method: 'PUT',

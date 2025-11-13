@@ -1,5 +1,5 @@
-import { batchLargeOverrides } from './batch-large-overrides';
-import { DscoRequestConfig } from '../../validators/auth';
+import {batchLargeOverrides} from './batch-large-overrides';
+import {DscoRequestConfig} from '../../validators/auth';
 import * as publishRequestModule from '../../request/publish-request';
 
 jest.mock('../../request/publish-request');
@@ -17,8 +17,8 @@ describe('batchLargeOverrides', () => {
   });
 
   it('should call batchLargeOverrides successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

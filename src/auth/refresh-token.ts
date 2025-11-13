@@ -1,6 +1,6 @@
-import { getToken } from './get-token';
-import { isExpired } from '../util/time';
-import { BaseDscoConfig, StoredToken } from '../validators/auth';
+import {getToken} from './get-token';
+import {isExpired} from '../util/time';
+import {BaseDscoConfig, StoredToken} from '../validators/auth';
 
 /**
  * Refresh access token if expired or about to expire
@@ -13,7 +13,7 @@ import { BaseDscoConfig, StoredToken } from '../validators/auth';
 export async function refreshToken(
   config: BaseDscoConfig,
   currentToken?: StoredToken,
-  bufferSeconds = 60,
+  bufferSeconds = 60
 ): Promise<StoredToken> {
   // If no current token or token is expired/about to expire, get new token
   if (!currentToken || isExpired(currentToken.expires_at, bufferSeconds)) {

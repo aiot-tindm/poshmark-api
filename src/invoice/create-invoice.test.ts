@@ -1,5 +1,5 @@
-import { createInvoice } from './create-invoice';
-import { DscoRequestConfig } from '../validators/auth';
+import {createInvoice} from './create-invoice';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -22,7 +22,7 @@ describe('createInvoice', () => {
       orderKey: 'order-123',
     };
 
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

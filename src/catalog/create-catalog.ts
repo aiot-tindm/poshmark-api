@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   CreateCatalogRequest,
   CreateCatalogRequestC,
@@ -18,7 +18,7 @@ import {
  */
 export async function createCatalog(
   config: DscoRequestConfig,
-  request: CreateCatalogRequest,
+  request: CreateCatalogRequest
 ): Promise<CatalogResponse> {
   return publishRequest<CreateCatalogRequest, CatalogResponse>(config.baseUri, {
     method: 'POST',

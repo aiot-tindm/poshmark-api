@@ -74,4 +74,6 @@ export const BatchCatalogOverridesRequestC = t.type({
   overrides: t.array(CatalogOverrideC),
 });
 
-export type BatchCatalogOverridesRequest = t.TypeOf<typeof BatchCatalogOverridesRequestC>;
+export type BatchCatalogOverridesRequest = t.TypeOf<
+  typeof BatchCatalogOverridesRequestC
+>;

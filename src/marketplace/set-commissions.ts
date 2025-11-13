@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,7 +13,7 @@ import * as t from 'io-ts';
  */
 export async function setCommissions(
   config: DscoRequestConfig,
-  commissions: unknown,
+  commissions: unknown
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'POST',

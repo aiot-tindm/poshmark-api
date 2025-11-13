@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   CreateAssortmentRequest,
   CreateAssortmentRequestC,
@@ -18,14 +18,17 @@ import {
  */
 export async function createAssortment(
   config: DscoRequestConfig,
-  request: CreateAssortmentRequest,
+  request: CreateAssortmentRequest
 ): Promise<CreateAssortmentResponse> {
-  return publishRequest<CreateAssortmentRequest, CreateAssortmentResponse>(config.baseUri, {
-    method: 'POST',
-    path: '/assortment',
-    accessToken: config.access_token,
-    inputCodec: CreateAssortmentRequestC,
-    outputCodec: CreateAssortmentResponseC,
-    input: request,
-  });
+  return publishRequest<CreateAssortmentRequest, CreateAssortmentResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: '/assortment',
+      accessToken: config.access_token,
+      inputCodec: CreateAssortmentRequestC,
+      outputCodec: CreateAssortmentResponseC,
+      input: request,
+    }
+  );
 }

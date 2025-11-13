@@ -1,5 +1,5 @@
 import * as t from 'io-ts';
-import { NonEmptyStringC, SuccessFailResponseC } from './common-validation';
+import {NonEmptyStringC, SuccessFailResponseC} from './common-validation';
 
 /**
  * Assortment object
@@ -32,7 +32,9 @@ export const CreateAssortmentResponseC = t.type({
   name: NonEmptyStringC,
 });
 
-export type CreateAssortmentResponse = t.TypeOf<typeof CreateAssortmentResponseC>;
+export type CreateAssortmentResponse = t.TypeOf<
+  typeof CreateAssortmentResponseC
+>;
 
 /**
  * Item key type
@@ -72,17 +74,21 @@ export const AddItemToAssortmentRequestC = t.partial({
   itemKey: ItemKeyObjC,
 });
 
-export type AddItemToAssortmentRequest = t.TypeOf<typeof AddItemToAssortmentRequestC>;
+export type AddItemToAssortmentRequest = t.TypeOf<
+  typeof AddItemToAssortmentRequestC
+>;
 
 /**
  * Add item to assortment response
  */
 export const AddItemToAssortmentResponseC = SuccessFailResponseC;
 
-export type AddItemToAssortmentResponse = t.TypeOf<typeof AddItemToAssortmentResponseC>;
+export type AddItemToAssortmentResponse = t.TypeOf<
+  typeof AddItemToAssortmentResponseC
+>;
 
 /**
  * Success/Fail response (re-export for convenience)
  */
-export { SuccessFailResponseC };
-export type { SuccessFailResponse } from './common-validation';
+export {SuccessFailResponseC};
+export type {SuccessFailResponse} from './common-validation';

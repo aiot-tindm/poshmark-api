@@ -1,5 +1,5 @@
 import * as t from 'io-ts';
-import { BaseUriC, NonEmptyStringC } from './common-validation';
+import {BaseUriC, NonEmptyStringC} from './common-validation';
 
 /**
  * Base DSCO configuration

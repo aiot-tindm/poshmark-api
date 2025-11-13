@@ -1,5 +1,5 @@
-import { batchSmallReturn } from './batch-small-return';
-import { DscoRequestConfig } from '../validators/auth';
+import {batchSmallReturn} from './batch-small-return';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('batchSmallReturn', () => {
   });
 
   it('should call batchSmallReturn successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

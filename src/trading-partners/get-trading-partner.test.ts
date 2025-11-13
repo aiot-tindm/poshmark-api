@@ -1,5 +1,5 @@
-import { getTradingPartner } from './get-trading-partner';
-import { DscoRequestConfig } from '../validators/auth';
+import {getTradingPartner} from './get-trading-partner';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('getTradingPartner', () => {
   });
 
   it('should get trading partner successfully', async () => {
-    const query = { tradingPartnerId: 'partner-123' };
-    const expectedResponse = { partner: {} };
+    const query = {tradingPartnerId: 'partner-123'};
+    const expectedResponse = {partner: {}};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

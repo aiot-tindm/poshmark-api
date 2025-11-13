@@ -1,6 +1,9 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-validation';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {
+  SuccessFailResponse,
+  SuccessFailResponseC,
+} from '../validators/common-validation';
 
 /**
  * Delete an assortment (removes all items from the assortment)
@@ -13,7 +16,7 @@ import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-
  */
 export async function deleteAssortment(
   config: DscoRequestConfig,
-  id: string,
+  id: string
 ): Promise<SuccessFailResponse> {
   return publishRequest<never, SuccessFailResponse>(config.baseUri, {
     method: 'DELETE',

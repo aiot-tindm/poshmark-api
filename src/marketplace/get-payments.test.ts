@@ -1,5 +1,5 @@
-import { getPayments } from './get-payments';
-import { DscoRequestConfig } from '../validators/auth';
+import {getPayments} from './get-payments';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getPayments', () => {
   });
 
   it('should call getPayments successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

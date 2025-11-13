@@ -1,5 +1,5 @@
-import { sleep } from './time';
-import { TransportError, TooManyRequestsError } from '../errors';
+import {sleep} from './time';
+import {TransportError, TooManyRequestsError} from '../errors';
 
 export interface RetryOptions {
   maxRetries?: number;
@@ -22,9 +22,9 @@ const DEFAULT_RETRY_OPTIONS: Required<RetryOptions> = {
  */
 export async function concurrentRetryRequest<T>(
   requestFn: () => Promise<T>,
-  options: RetryOptions = {},
+  options: RetryOptions = {}
 ): Promise<T> {
-  const opts = { ...DEFAULT_RETRY_OPTIONS, ...options };
+  const opts = {...DEFAULT_RETRY_OPTIONS, ...options};
   let lastError: Error | undefined;
   let delay = opts.initialDelayMs;
 
@@ -64,7 +64,10 @@ export async function concurrentRetryRequest<T>(
 /**
  * Check if an error is retryable
  */
-function isRetryableError(error: unknown, retryableStatusCodes: number[]): boolean {
+function isRetryableError(
+  error: unknown,
+  retryableStatusCodes: number[]
+): boolean {
   if (error instanceof TooManyRequestsError) {
     return true;
   }
@@ -91,7 +94,7 @@ function isRetryableError(error: unknown, retryableStatusCodes: number[]): boole
  */
 export async function concurrentRetryRequests<T>(
   requestFns: Array<() => Promise<T>>,
-  options: RetryOptions = {},
+  options: RetryOptions = {}
 ): Promise<T[]> {
   const promises = requestFns.map((fn) => concurrentRetryRequest(fn, options));
   return Promise.all(promises);

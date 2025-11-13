@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -17,7 +17,7 @@ export async function executeCollector(
   config: DscoRequestConfig,
   objectType: string,
   functionId: string,
-  request: unknown,
+  request: unknown
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'POST',

@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   SingleShipmentRequest,
   SingleShipmentRequestC,
@@ -18,14 +18,17 @@ import {
  */
 export async function singleShipment(
   config: DscoRequestConfig,
-  request: SingleShipmentRequest,
+  request: SingleShipmentRequest
 ): Promise<ShipmentResponse> {
-  return publishRequest<SingleShipmentRequest, ShipmentResponse>(config.baseUri, {
-    method: 'POST',
-    path: '/order/singleShipment',
-    accessToken: config.access_token,
-    inputCodec: SingleShipmentRequestC,
-    outputCodec: ShipmentResponseC,
-    input: request,
-  });
+  return publishRequest<SingleShipmentRequest, ShipmentResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: '/order/singleShipment',
+      accessToken: config.access_token,
+      inputCodec: SingleShipmentRequestC,
+      outputCodec: ShipmentResponseC,
+      input: request,
+    }
+  );
 }

@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   BatchCatalogRequest,
   BatchCatalogRequestC,
@@ -18,7 +18,7 @@ import {
  */
 export async function batchLargeCatalog(
   config: DscoRequestConfig,
-  request: BatchCatalogRequest,
+  request: BatchCatalogRequest
 ): Promise<CatalogResponse> {
   return publishRequest<BatchCatalogRequest, CatalogResponse>(config.baseUri, {
     method: 'POST',

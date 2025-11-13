@@ -10,8 +10,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "prepublishOnly": "npm run build"
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "keywords": [
     "dsco",
@@ -43,6 +42,6 @@
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.0.0"
   }
 }

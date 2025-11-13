@@ -1,6 +1,9 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { AsyncUpdateResponse, AsyncUpdateResponseC } from '../validators/common-validation';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {
+  AsyncUpdateResponse,
+  AsyncUpdateResponseC,
+} from '../validators/common-validation';
 import * as t from 'io-ts';
 
 /**
@@ -18,7 +21,7 @@ const BulkRemoveItemsRequestC = t.partial({
         dscoSupplierId: t.number,
         tradingPartnerId: t.string,
       }),
-    ]),
+    ])
   ),
 });
 
@@ -37,14 +40,17 @@ export type BulkRemoveItemsRequest = t.TypeOf<typeof BulkRemoveItemsRequestC>;
 export async function removeBatchAssortmentItems(
   config: DscoRequestConfig,
   id: string,
-  request: BulkRemoveItemsRequest[],
+  request: BulkRemoveItemsRequest[]
 ): Promise<AsyncUpdateResponse> {
-  return publishRequest<BulkRemoveItemsRequest[], AsyncUpdateResponse>(config.baseUri, {
-    method: 'DELETE',
-    path: `/assortment/${id}/batch/small`,
-    accessToken: config.access_token,
-    inputCodec: t.array(BulkRemoveItemsRequestC),
-    outputCodec: AsyncUpdateResponseC,
-    input: request,
-  });
+  return publishRequest<BulkRemoveItemsRequest[], AsyncUpdateResponse>(
+    config.baseUri,
+    {
+      method: 'DELETE',
+      path: `/assortment/${id}/batch/small`,
+      accessToken: config.access_token,
+      inputCodec: t.array(BulkRemoveItemsRequestC),
+      outputCodec: AsyncUpdateResponseC,
+      input: request,
+    }
+  );
 }

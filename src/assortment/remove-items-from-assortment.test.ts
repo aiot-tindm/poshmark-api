@@ -1,5 +1,5 @@
-import { removeItemsFromAssortment } from './remove-items-from-assortment';
-import { DscoRequestConfig } from '../validators/auth';
+import {removeItemsFromAssortment} from './remove-items-from-assortment';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,14 +17,18 @@ describe('removeItemsFromAssortment', () => {
   });
 
   it('should call removeItemsFromAssortment successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')
       .mockResolvedValue(expectedResponse);
 
-    const result = await removeItemsFromAssortment(mockConfig, 'test-id', request);
+    const result = await removeItemsFromAssortment(
+      mockConfig,
+      'test-id',
+      request
+    );
 
     expect(result).toEqual(expectedResponse);
     expect(mockPublishRequest).toHaveBeenCalled();

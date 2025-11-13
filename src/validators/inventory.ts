@@ -1,5 +1,9 @@
 import * as t from 'io-ts';
-import { NonEmptyStringC, PositiveNumberC, NonNegativeNumberC } from './common-validation';
+import {
+  NonEmptyStringC,
+  PositiveNumberC,
+  NonNegativeNumberC,
+} from './common-validation';
 
 /**
  * Inventory item
@@ -41,7 +45,9 @@ export type InventoryResponse = t.TypeOf<typeof InventoryResponseC>;
  */
 export const GetSingleInventoryItemResponseC = InventoryItemC;
 
-export type GetSingleInventoryItemResponse = t.TypeOf<typeof GetSingleInventoryItemResponseC>;
+export type GetSingleInventoryItemResponse = t.TypeOf<
+  typeof GetSingleInventoryItemResponseC
+>;
 
 /**
  * SKU hold request

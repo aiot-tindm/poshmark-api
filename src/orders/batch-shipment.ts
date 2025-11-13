@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   BatchShipmentRequest,
   BatchShipmentRequestC,
@@ -18,14 +18,17 @@ import {
  */
 export async function batchShipment(
   config: DscoRequestConfig,
-  request: BatchShipmentRequest,
+  request: BatchShipmentRequest
 ): Promise<ShipmentResponse> {
-  return publishRequest<BatchShipmentRequest, ShipmentResponse>(config.baseUri, {
-    method: 'POST',
-    path: '/order/shipment/batch/small',
-    accessToken: config.access_token,
-    inputCodec: BatchShipmentRequestC,
-    outputCodec: ShipmentResponseC,
-    input: request,
-  });
+  return publishRequest<BatchShipmentRequest, ShipmentResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: '/order/shipment/batch/small',
+      accessToken: config.access_token,
+      inputCodec: BatchShipmentRequestC,
+      outputCodec: ShipmentResponseC,
+      input: request,
+    }
+  );
 }

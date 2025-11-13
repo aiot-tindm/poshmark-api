@@ -1,5 +1,5 @@
-import { getReturnPage } from './get-return-page';
-import { DscoRequestConfig } from '../validators/auth';
+import {getReturnPage} from './get-return-page';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getReturnPage', () => {
   });
 
   it('should call getReturnPage successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')
