@@ -1,5 +1,5 @@
-import { setRetailerWarehouseCodes } from './set-retailer-warehouse-codes';
-import { DscoRequestConfig } from '../validators/auth';
+import {setRetailerWarehouseCodes} from './set-retailer-warehouse-codes';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('setRetailerWarehouseCodes', () => {
   });
 
   it('should call setRetailerWarehouseCodes successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

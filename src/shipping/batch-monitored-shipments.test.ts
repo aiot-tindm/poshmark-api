@@ -1,5 +1,5 @@
-import { batchMonitoredShipments } from './batch-monitored-shipments';
-import { DscoRequestConfig } from '../validators/auth';
+import {batchMonitoredShipments} from './batch-monitored-shipments';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('batchMonitoredShipments', () => {
   });
 
   it('should call batchMonitoredShipments successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

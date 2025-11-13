@@ -1,5 +1,5 @@
-import { hello } from './hello';
-import { DscoRequestConfig } from '../validators/auth';
+import {hello} from './hello';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('hello', () => {
   });
 
   it('should call hello endpoint successfully', async () => {
-    const expectedResponse = { message: 'Hello World' };
+    const expectedResponse = {message: 'Hello World'};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

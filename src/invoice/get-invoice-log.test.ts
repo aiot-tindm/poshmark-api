@@ -1,5 +1,5 @@
-import { getInvoiceLog } from './get-invoice-log';
-import { DscoRequestConfig } from '../validators/auth';
+import {getInvoiceLog} from './get-invoice-log';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getInvoiceLog', () => {
   });
 
   it('should call getInvoiceLog successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

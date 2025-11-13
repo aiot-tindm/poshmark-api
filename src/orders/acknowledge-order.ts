@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   AcknowledgeOrderRequest,
   AcknowledgeOrderRequestC,
@@ -18,14 +18,17 @@ import {
  */
 export async function acknowledgeOrder(
   config: DscoRequestConfig,
-  request: AcknowledgeOrderRequest,
+  request: AcknowledgeOrderRequest
 ): Promise<AcknowledgeOrderResponse> {
-  return publishRequest<AcknowledgeOrderRequest, AcknowledgeOrderResponse>(config.baseUri, {
-    method: 'POST',
-    path: '/order/acknowledge',
-    accessToken: config.access_token,
-    inputCodec: AcknowledgeOrderRequestC,
-    outputCodec: AcknowledgeOrderResponseC,
-    input: request,
-  });
+  return publishRequest<AcknowledgeOrderRequest, AcknowledgeOrderResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: '/order/acknowledge',
+      accessToken: config.access_token,
+      inputCodec: AcknowledgeOrderRequestC,
+      outputCodec: AcknowledgeOrderResponseC,
+      input: request,
+    }
+  );
 }

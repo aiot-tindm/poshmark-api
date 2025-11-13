@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import {
   UpdateInventoryRequest,
   UpdateInventoryRequestC,
@@ -18,14 +18,17 @@ import {
  */
 export async function batchLargeInventory(
   config: DscoRequestConfig,
-  request: UpdateInventoryRequest,
+  request: UpdateInventoryRequest
 ): Promise<InventoryResponse> {
-  return publishRequest<UpdateInventoryRequest, InventoryResponse>(config.baseUri, {
-    method: 'POST',
-    path: '/inventory/batch/large',
-    accessToken: config.access_token,
-    inputCodec: UpdateInventoryRequestC,
-    outputCodec: InventoryResponseC,
-    input: request,
-  });
+  return publishRequest<UpdateInventoryRequest, InventoryResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: '/inventory/batch/large',
+      accessToken: config.access_token,
+      inputCodec: UpdateInventoryRequestC,
+      outputCodec: InventoryResponseC,
+      input: request,
+    }
+  );
 }

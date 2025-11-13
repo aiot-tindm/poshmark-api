@@ -1,5 +1,9 @@
 import * as t from 'io-ts';
-import { NonEmptyStringC, PositiveNumberC, IsoDateStringC } from '../common-validation';
+import {
+  NonEmptyStringC,
+  PositiveNumberC,
+  IsoDateStringC,
+} from '../common-validation';
 
 /**
  * Order status
@@ -84,7 +88,9 @@ export const AcknowledgeOrderResponseC = t.type({
   success: t.boolean,
 });
 
-export type AcknowledgeOrderResponse = t.TypeOf<typeof AcknowledgeOrderResponseC>;
+export type AcknowledgeOrderResponse = t.TypeOf<
+  typeof AcknowledgeOrderResponseC
+>;
 
 /**
  * Shipment information
@@ -101,7 +107,7 @@ export const ShipmentC = t.intersection([
       t.type({
         lineNumber: t.number,
         quantity: PositiveNumberC,
-      }),
+      })
     ),
   }),
 ]);

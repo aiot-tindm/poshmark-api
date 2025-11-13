@@ -1,5 +1,5 @@
-import { getPricingApproval } from './get-pricing-approval';
-import { DscoRequestConfig } from '../validators/auth';
+import {getPricingApproval} from './get-pricing-approval';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('getPricingApproval', () => {
   });
 
   it('should get pricing approvals successfully', async () => {
-    const query = { status: 'pending' };
-    const expectedResponse = { approvals: [] };
+    const query = {status: 'pending'};
+    const expectedResponse = {approvals: []};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

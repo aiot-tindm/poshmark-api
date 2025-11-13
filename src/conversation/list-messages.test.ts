@@ -1,5 +1,5 @@
-import { listMessages } from './list-messages';
-import { DscoRequestConfig } from '../validators/auth';
+import {listMessages} from './list-messages';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('listMessages', () => {
   });
 
   it('should call listMessages successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

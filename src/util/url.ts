@@ -24,7 +24,7 @@ export function buildUrl(baseUrl: string, path: string): string {
 export function buildUrlWithParams(
   baseUrl: string,
   path: string,
-  params?: Record<string, string | number | boolean | undefined>,
+  params?: Record<string, string | number | boolean | undefined>
 ): string {
   const url = buildUrl(baseUrl, path);
 

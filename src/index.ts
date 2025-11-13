@@ -32,8 +32,11 @@ export * from './errors';
 export * from './validators';
 
 // Utilities
-export { concurrentRetryRequest, concurrentRetryRequests } from './util/concurrent-retry-request';
-export { deepClone, removeUndefined, isEmpty, pick, omit } from './util/object';
+export {
+  concurrentRetryRequest,
+  concurrentRetryRequests,
+} from './util/concurrent-retry-request';
+export {deepClone, removeUndefined, isEmpty, pick, omit} from './util/object';
 export {
   getCurrentTimestamp,
   getCurrentTimestampMs,
@@ -42,8 +45,8 @@ export {
   sleep,
   isExpired,
 } from './util/time';
-export { validate, isValid, safeValidate } from './util/validator';
-export { normalizeBaseUrl, buildUrl, buildUrlWithParams } from './util/url';
+export {validate, isValid, safeValidate} from './util/validator';
+export {normalizeBaseUrl, buildUrl, buildUrlWithParams} from './util/url';
 export {
   isDscoApiError,
   extractErrorMessage,

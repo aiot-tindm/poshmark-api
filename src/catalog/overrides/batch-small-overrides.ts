@@ -1,5 +1,5 @@
-import { publishRequest } from '../../request/publish-request';
-import { DscoRequestConfig } from '../../validators/auth';
+import {publishRequest} from '../../request/publish-request';
+import {DscoRequestConfig} from '../../validators/auth';
 import {
   BatchCatalogOverridesRequest,
   BatchCatalogOverridesRequestC,
@@ -18,14 +18,17 @@ import {
  */
 export async function batchSmallOverrides(
   config: DscoRequestConfig,
-  request: BatchCatalogOverridesRequest,
+  request: BatchCatalogOverridesRequest
 ): Promise<CatalogResponse> {
-  return publishRequest<BatchCatalogOverridesRequest, CatalogResponse>(config.baseUri, {
-    method: 'POST',
-    path: '/catalog/overrides/batch/small',
-    accessToken: config.access_token,
-    inputCodec: BatchCatalogOverridesRequestC,
-    outputCodec: CatalogResponseC,
-    input: request,
-  });
+  return publishRequest<BatchCatalogOverridesRequest, CatalogResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: '/catalog/overrides/batch/small',
+      accessToken: config.access_token,
+      inputCodec: BatchCatalogOverridesRequestC,
+      outputCodec: CatalogResponseC,
+      input: request,
+    }
+  );
 }

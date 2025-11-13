@@ -1,5 +1,5 @@
-import { getAdjustments } from './get-adjustments';
-import { DscoRequestConfig } from '../validators/auth';
+import {getAdjustments} from './get-adjustments';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,7 +17,7 @@ describe('getAdjustments', () => {
   });
 
   it('should call getAdjustments successfully', async () => {
-    const expectedResponse = { success: true };
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

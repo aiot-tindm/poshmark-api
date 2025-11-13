@@ -1,2 +1,2 @@
-export { getToken } from './get-token';
-export { refreshToken } from './refresh-token';
+export {getToken} from './get-token';
+export {refreshToken} from './refresh-token';

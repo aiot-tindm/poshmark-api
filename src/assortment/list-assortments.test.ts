@@ -1,5 +1,5 @@
-import { listAssortments } from './list-assortments';
-import { DscoRequestConfig } from '../validators/auth';
+import {listAssortments} from './list-assortments';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -18,8 +18,8 @@ describe('listAssortments', () => {
 
   it('should list all assortments successfully', async () => {
     const expectedResponse = [
-      { id: 'assortment-1', name: 'Assortment 1' },
-      { id: 'assortment-2', name: 'Assortment 2' },
+      {id: 'assortment-1', name: 'Assortment 1'},
+      {id: 'assortment-2', name: 'Assortment 2'},
     ];
 
     const mockPublishRequest = jest

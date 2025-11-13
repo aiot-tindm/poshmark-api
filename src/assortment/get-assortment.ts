@@ -1,6 +1,6 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { Assortment, AssortmentC } from '../validators/assortment';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {Assortment, AssortmentC} from '../validators/assortment';
 
 /**
  * Get a single assortment by ID
@@ -13,7 +13,7 @@ import { Assortment, AssortmentC } from '../validators/assortment';
  */
 export async function getAssortment(
   config: DscoRequestConfig,
-  id: string,
+  id: string
 ): Promise<Assortment> {
   return publishRequest<never, Assortment>(config.baseUri, {
     method: 'GET',

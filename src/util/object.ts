@@ -34,7 +34,9 @@ export function deepClone<T>(obj: T): T {
 /**
  * Remove undefined values from an object
  */
-export function removeUndefined<T extends Record<string, unknown>>(obj: T): Partial<T> {
+export function removeUndefined<T extends Record<string, unknown>>(
+  obj: T
+): Partial<T> {
   const result: Record<string, unknown> = {};
   Object.entries(obj).forEach(([key, value]) => {
     if (value !== undefined) {
@@ -56,7 +58,7 @@ export function isEmpty(obj: Record<string, unknown>): boolean {
  */
 export function pick<T extends Record<string, unknown>, K extends keyof T>(
   obj: T,
-  keys: K[],
+  keys: K[]
 ): Pick<T, K> {
   const result: Partial<T> = {};
   keys.forEach((key) => {
@@ -72,9 +74,9 @@ export function pick<T extends Record<string, unknown>, K extends keyof T>(
  */
 export function omit<T extends Record<string, unknown>, K extends keyof T>(
   obj: T,
-  keys: K[],
+  keys: K[]
 ): Omit<T, K> {
-  const result: Partial<T> = { ...obj };
+  const result: Partial<T> = {...obj};
   keys.forEach((key) => {
     delete result[key];
   });

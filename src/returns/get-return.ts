@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -13,13 +13,13 @@ import * as t from 'io-ts';
  */
 export async function getReturn(
   config: DscoRequestConfig,
-  returnKey: string,
+  returnKey: string
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'GET',
     path: '/return/',
     accessToken: config.access_token,
     outputCodec: t.unknown,
-    queryParams: { returnKey },
+    queryParams: {returnKey},
   });
 }

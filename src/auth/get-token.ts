@@ -1,7 +1,7 @@
-import { createFetchRequest } from '../request/create-fetch-request';
-import { createEndpointUri } from '../request/create-endpoint-uri';
-import { validate } from '../util/validator';
-import { getCurrentTimestamp } from '../util/time';
+import {createFetchRequest} from '../request/create-fetch-request';
+import {createEndpointUri} from '../request/create-endpoint-uri';
+import {validate} from '../util/validator';
+import {getCurrentTimestamp} from '../util/time';
 import {
   BaseDscoConfig,
   BaseDscoConfigC,
@@ -9,7 +9,7 @@ import {
   OAuth2TokenResponseC,
   StoredToken,
 } from '../validators/auth';
-import { AuthError } from '../errors';
+import {AuthError} from '../errors';
 
 /**
  * Get OAuth2 access token from DSCO API
@@ -21,9 +21,13 @@ import { AuthError } from '../errors';
  */
 export async function getToken(config: BaseDscoConfig): Promise<StoredToken> {
   // Validate config
-  const validatedConfig = validate(BaseDscoConfigC, config, 'Invalid configuration');
+  const validatedConfig = validate(
+    BaseDscoConfigC,
+    config,
+    'Invalid configuration'
+  );
 
-  const { baseUri, client_id, client_secret } = validatedConfig;
+  const {baseUri, client_id, client_secret} = validatedConfig;
 
   // Build URL
   const url = createEndpointUri(baseUri, '/oauth2/token');
@@ -48,7 +52,7 @@ export async function getToken(config: BaseDscoConfig): Promise<StoredToken> {
   if (!response.ok) {
     const errorText = await response.text();
     throw new AuthError(
-      `Failed to get access token: ${response.status} ${response.statusText} - ${errorText}`,
+      `Failed to get access token: ${response.status} ${response.statusText} - ${errorText}`
     );
   }
 
@@ -63,7 +67,7 @@ export async function getToken(config: BaseDscoConfig): Promise<StoredToken> {
   const tokenResponse = validate(
     OAuth2TokenResponseC,
     responseData,
-    'Invalid token response',
+    'Invalid token response'
   ) as OAuth2TokenResponse;
 
   // Calculate expiration timestamp

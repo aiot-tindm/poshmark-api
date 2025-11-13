@@ -1,5 +1,5 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
 import * as t from 'io-ts';
 
 /**
@@ -15,7 +15,7 @@ import * as t from 'io-ts';
 export async function updatePromotion(
   config: DscoRequestConfig,
   promotionId: string,
-  promotion: unknown,
+  promotion: unknown
 ): Promise<unknown> {
   return publishRequest(config.baseUri, {
     method: 'PUT',

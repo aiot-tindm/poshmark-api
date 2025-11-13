@@ -1,4 +1,4 @@
-import { AbstractError } from './abstract-error';
+import {AbstractError} from './abstract-error';
 
 /**
  * Represents a 404 Not Found error

@@ -1,4 +1,4 @@
-import { buildUrl } from '../util/url';
+import {buildUrl} from '../util/url';
 
 /**
  * Create a full endpoint URI from base URL and path

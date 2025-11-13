@@ -1,6 +1,9 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { SuccessFailResponse, SuccessFailResponseC } from '../validators/common-validation';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {
+  SuccessFailResponse,
+  SuccessFailResponseC,
+} from '../validators/common-validation';
 import * as t from 'io-ts';
 
 /**
@@ -18,7 +21,7 @@ const BulkAddItemsRequestC = t.partial({
         dscoSupplierId: t.number,
         tradingPartnerId: t.string,
       }),
-    ]),
+    ])
   ),
 });
 
@@ -37,14 +40,17 @@ export type BulkAddItemsRequest = t.TypeOf<typeof BulkAddItemsRequestC>;
 export async function addItemsToAssortment(
   config: DscoRequestConfig,
   id: string,
-  request: BulkAddItemsRequest,
+  request: BulkAddItemsRequest
 ): Promise<SuccessFailResponse> {
-  return publishRequest<BulkAddItemsRequest, SuccessFailResponse>(config.baseUri, {
-    method: 'POST',
-    path: `/assortment/${id}/items`,
-    accessToken: config.access_token,
-    inputCodec: BulkAddItemsRequestC,
-    outputCodec: SuccessFailResponseC,
-    input: request,
-  });
+  return publishRequest<BulkAddItemsRequest, SuccessFailResponse>(
+    config.baseUri,
+    {
+      method: 'POST',
+      path: `/assortment/${id}/items`,
+      accessToken: config.access_token,
+      inputCodec: BulkAddItemsRequestC,
+      outputCodec: SuccessFailResponseC,
+      input: request,
+    }
+  );
 }

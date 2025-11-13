@@ -1,5 +1,5 @@
-import { removeBatchAssortmentItems } from './remove-batch-assortment-items';
-import { DscoRequestConfig } from '../validators/auth';
+import {removeBatchAssortmentItems} from './remove-batch-assortment-items';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,14 +17,18 @@ describe('removeBatchAssortmentItems', () => {
   });
 
   it('should call removeBatchAssortmentItems successfully', async () => {
-    const request = { test: 'data' };
-    const expectedResponse = { success: true };
+    const request = {test: 'data'};
+    const expectedResponse = {success: true};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')
       .mockResolvedValue(expectedResponse);
 
-    const result = await removeBatchAssortmentItems(mockConfig, 'test-id', request);
+    const result = await removeBatchAssortmentItems(
+      mockConfig,
+      'test-id',
+      request
+    );
 
     expect(result).toEqual(expectedResponse);
     expect(mockPublishRequest).toHaveBeenCalled();

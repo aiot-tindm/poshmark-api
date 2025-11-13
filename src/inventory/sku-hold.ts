@@ -1,6 +1,11 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { SkuHoldRequest, SkuHoldRequestC, SkuHoldResponse, SkuHoldResponseC } from '../validators/inventory';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {
+  SkuHoldRequest,
+  SkuHoldRequestC,
+  SkuHoldResponse,
+  SkuHoldResponseC,
+} from '../validators/inventory';
 
 /**
  * SKU hold operations
@@ -13,7 +18,7 @@ import { SkuHoldRequest, SkuHoldRequestC, SkuHoldResponse, SkuHoldResponseC } fr
  */
 export async function skuHold(
   config: DscoRequestConfig,
-  request: SkuHoldRequest,
+  request: SkuHoldRequest
 ): Promise<SkuHoldResponse> {
   return publishRequest<SkuHoldRequest, SkuHoldResponse>(config.baseUri, {
     method: 'POST',

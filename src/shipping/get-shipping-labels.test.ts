@@ -1,5 +1,5 @@
-import { getShippingLabels } from './get-shipping-labels';
-import { DscoRequestConfig } from '../validators/auth';
+import {getShippingLabels} from './get-shipping-labels';
+import {DscoRequestConfig} from '../validators/auth';
 import * as publishRequestModule from '../request/publish-request';
 
 jest.mock('../request/publish-request');
@@ -17,8 +17,8 @@ describe('getShippingLabels', () => {
   });
 
   it('should get shipping labels successfully', async () => {
-    const request = { orderId: 'order-123' };
-    const expectedResponse = { label: 'base64-encoded-label' };
+    const request = {orderId: 'order-123'};
+    const expectedResponse = {label: 'base64-encoded-label'};
 
     const mockPublishRequest = jest
       .spyOn(publishRequestModule, 'publishRequest')

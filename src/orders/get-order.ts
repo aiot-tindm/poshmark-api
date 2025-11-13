@@ -1,6 +1,6 @@
-import { publishRequest } from '../request/publish-request';
-import { DscoRequestConfig } from '../validators/auth';
-import { GetOrderResponse, GetOrderResponseC } from '../validators/orders/order';
+import {publishRequest} from '../request/publish-request';
+import {DscoRequestConfig} from '../validators/auth';
+import {GetOrderResponse, GetOrderResponseC} from '../validators/orders/order';
 
 /**
  * Get order by order key
@@ -13,13 +13,13 @@ import { GetOrderResponse, GetOrderResponseC } from '../validators/orders/order'
  */
 export async function getOrder(
   config: DscoRequestConfig,
-  orderKey: string,
+  orderKey: string
 ): Promise<GetOrderResponse> {
   return publishRequest<never, GetOrderResponse>(config.baseUri, {
     method: 'GET',
     path: '/order/',
     accessToken: config.access_token,
     outputCodec: GetOrderResponseC,
-    queryParams: { orderKey },
+    queryParams: {orderKey},
   });
 }

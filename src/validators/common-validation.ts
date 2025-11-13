@@ -10,7 +10,7 @@ import * as t from 'io-ts';
 export const NonEmptyStringC = t.refinement(
   t.string,
   (s): s is string => s.length > 0,
-  'NonEmptyString',
+  'NonEmptyString'
 );
 
 /**
@@ -19,7 +19,7 @@ export const NonEmptyStringC = t.refinement(
 export const PositiveNumberC = t.refinement(
   t.number,
   (n): n is number => n > 0,
-  'PositiveNumber',
+  'PositiveNumber'
 );
 
 /**
@@ -28,7 +28,7 @@ export const PositiveNumberC = t.refinement(
 export const NonNegativeNumberC = t.refinement(
   t.number,
   (n): n is number => n >= 0,
-  'NonNegativeNumber',
+  'NonNegativeNumber'
 );
 
 /**
@@ -37,13 +37,17 @@ export const NonNegativeNumberC = t.refinement(
 export const BaseUriC = t.refinement(
   t.string,
   (s): s is string => s.startsWith('http://') || s.startsWith('https://'),
-  'BaseUri',
+  'BaseUri'
 );
 
 /**
  * Timestamp codec (Unix timestamp in seconds)
  */
-export const TimestampC = t.refinement(t.number, (n): n is number => n > 0, 'Timestamp');
+export const TimestampC = t.refinement(
+  t.number,
+  (n): n is number => n > 0,
+  'Timestamp'
+);
 
 /**
  * ISO Date string codec
@@ -51,7 +55,7 @@ export const TimestampC = t.refinement(t.number, (n): n is number => n > 0, 'Tim
 export const IsoDateStringC = t.refinement(
   t.string,
   (s): s is string => !isNaN(Date.parse(s)),
-  'IsoDateString',
+  'IsoDateString'
 );
 
 /**
@@ -102,7 +106,11 @@ export type IdParam = t.TypeOf<typeof IdParamC>;
  * Async update response codec
  */
 export const AsyncUpdateResponseC = t.type({
-  status: t.union([t.literal('success'), t.literal('failure'), t.literal('pending')]),
+  status: t.union([
+    t.literal('success'),
+    t.literal('failure'),
+    t.literal('pending'),
+  ]),
   requestId: t.string,
   eventDate: t.string,
 });
