@@ -80,3 +80,9 @@ export type AddItemToAssortmentRequest = t.TypeOf<typeof AddItemToAssortmentRequ
 export const AddItemToAssortmentResponseC = SuccessFailResponseC;
 
 export type AddItemToAssortmentResponse = t.TypeOf<typeof AddItemToAssortmentResponseC>;
+
+/**
+ * Success/Fail response (re-export for convenience)
+ */
+export { SuccessFailResponseC };
+export type { SuccessFailResponse } from './common-validation';

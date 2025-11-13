@@ -1,6 +1,11 @@
 export { getSettlements } from './get-settlements';
 export { getAdjustments } from './get-adjustments';
 export { getPayments } from './get-payments';
+export { getPaymentAllocations } from './get-payment-allocations';
+export { getPayStatement } from './get-pay-statement';
 export { getPromotion } from './get-promotion';
+export { getPromotionById } from './get-promotion-by-id';
+export { reviewPromotion } from './review-promotion';
+export { reviewPromotionItems } from './review-promotion-items';
 export { uploadPromotionItems } from './upload-promotion-items';
 export { getCommissions } from './get-commissions';
