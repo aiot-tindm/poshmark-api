@@ -1,2 +1,7 @@
 export { getReturn } from './get-return';
 export { getReturnPage } from './get-return-page';
+export { batchSmallReturn } from './batch-small-return';
+export { batchLargeReturn } from './batch-large-return';
+export { getReturnLog } from './get-return-log';
+export { updateReturn } from './update-return';
+export { cancelReturn } from './cancel-return';
