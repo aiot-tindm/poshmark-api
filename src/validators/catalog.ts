@@ -1,5 +1,5 @@
 import * as t from 'io-ts';
-import { NonEmptyStringC } from './common-validation';
+import {NonEmptyStringC} from './common-validation';
 
 /**
  * Catalog item
