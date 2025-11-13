@@ -51,28 +51,55 @@ import {
 
 ```typescript
 import {
+  // Response/Query types
   Order,
   OrderItem,
   OrderQuery,
-  OrderKey,
+
+  // Request types
+  CreateOrderRequest,
+  UpdateOrderRequest,
+  OrderLineItem,
+  OrderShipping,
   AcknowledgeOrderRequest,
   CancelOrderRequest,
   SingleShipmentRequest,
+
+  // Identifiers
+  OrderKey,
 } from 'dsco-api';
 
-// Example usage
-const order: Order = {
-  orderKey: 'ORD-123',
-  retailerOrderId: 'R-456',
-  orderDate: '2024-01-15',
-  items: [
+// Example: Create Order
+const createOrderRequest: CreateOrderRequest = {
+  poNumber: 'PO-123456',  // Required
+  lineItems: [            // Required
     {
-      lineNumber: 1,
-      itemKey: 'SKU-789',
-      quantity: 2,
-      unitPrice: 29.99,
+      quantity: 2,        // Required
+      sku: 'SKU-789',
+      title: 'Product Name',
+      consumerPrice: 29.99,
     },
   ],
+  shipping: {             // Required
+    name: 'John Doe',
+    address: ['123 Main St'],
+    city: 'Seattle',      // Required
+    region: 'WA',         // Required
+    postal: '98101',      // Required
+    country: 'US',
+    email: 'john@example.com',
+  },
+  dscoTradingPartnerId: 'TP-001',
+  orderDate: '2024-01-15T10:00:00Z',
+  total: 59.98,
+};
+
+// Example: Query Orders
+const query: OrderQuery = {
+  poNumber: 'PO-123456',
+  startDate: '2024-01-01',
+  endDate: '2024-01-31',
+  status: 'pending',
 };
 ```
 
@@ -80,115 +107,351 @@ const order: Order = {
 
 ```typescript
 import {
+  // Response/Query types
   Return,
   ReturnItem,
   ReturnQuery,
-  ReturnKey,
+  ReturnResponse,
+
+  // Request types
+  CreateReturnRequest,
+  CompleteReturnRequest,
+  ReturnLineItemCreate,
+
+  // Enums/Constants
   ReturnStatus,
+  ReturnKey,
 } from 'dsco-api';
 
-// Example usage
-const returnRequest: Return = {
-  returnKey: 'RET-123',
-  orderKey: 'ORD-123',
-  returnDate: '2024-01-20',
-  status: 'pending',
-  items: [
+// Example: Create Return
+const createReturnRequest: CreateReturnRequest = {
+  returnNumber: 'RET-123456',  // Required
+  lineItems: [                 // Required
+    {
+      quantity: 1,             // Required
+      reasonCode: 'DEFECTIVE', // Required
+      sku: 'SKU-789',
+      reason: 'Item was damaged',
+      condition: 'defective',
+      refundAmount: 29.99,
+    },
+  ],
+  poNumber: 'PO-123456',       // One of poNumber or dscoOrderId required
+  returnDate: '2024-01-20T10:00:00Z',
+  totalRefund: 29.99,
+};
+
+// Example: Complete Return
+const completeReturnRequest: CompleteReturnRequest = {
+  dscoReturnId: 12345,
+  completionDate: '2024-01-25T10:00:00Z',
+  notes: 'Return processed successfully',
+  lineItems: [
     {
       lineNumber: 1,
-      itemKey: 'SKU-789',
       quantity: 1,
-      reason: 'defective',
+      condition: 'defective',
+      restockable: false,
     },
   ],
 };
 ```
 
-#### Marketplace
+#### Marketplace (Payments, Settlements, Adjustments, Promotions)
 
 ```typescript
 import {
+  // Payment types
+  CreatePaymentRequest,
+  PaymentResponse,
   Payment,
-  Settlement,
+  StatementAllocation,
+
+  // Adjustment types
+  CreateAdjustmentsRequest,
+  AdjustmentItem,
   Adjustment,
+
+  // Promotion types
+  CreatePromotionRequest,
+  PromotionRetailer,
   Promotion,
+
+  // Settlement & Commission types
+  Settlement,
   Commission,
+  SetCommissionsRequest,
+
+  // Identifiers
   PaymentId,
   PromotionId,
 } from 'dsco-api';
+
+// Example: Create Payment
+const createPaymentRequest: CreatePaymentRequest = {
+  paymentDate: '2024-01-20T10:00:00Z',  // Required
+  transactionId: 'TXN-123456',          // Required
+  allocations: [                         // Required
+    {
+      amount: 59.98,                     // Required
+      poNumber: 'PO-123456',
+      allocationType: 'payment',
+    },
+  ],
+  currency: 'USD',
+};
+
+// Example: Create Promotion
+const createPromotionRequest: CreatePromotionRequest = {
+  name: 'Summer Sale 2024',              // Required
+  retailers: [                           // Required
+    { tradingPartnerId: 'TP-001' },
+    { tradingPartnerId: 'TP-002' },
+  ],
+  discountType: 'percentage',
+  discountValue: 20,
+  startDate: '2024-06-01T00:00:00Z',
+  endDate: '2024-08-31T23:59:59Z',
+};
 ```
 
-#### Shipping
+#### Shipping & Delivery
 
 ```typescript
 import {
+  // Shipment types
+  CreateShipmentRequest,
+  Shipment,
+  ShipmentLineItem,
+
+  // Shipping label types
+  CreateShippingLabelsRequest,
   ShippingLabel,
+
+  // Monitored shipment types
+  CreateMonitoredShipmentRequest,
   MonitoredShipment,
+
+  // Delivery promise types
+  DetermineDeliveryPromiseRequest,
   DeliveryPromise,
+
+  // Rate shopping types
+  RateShopRequest,
   RateShopOption,
+
+  // Identifiers
   TrackingNumber,
   CarrierCode,
 } from 'dsco-api';
+
+// Example: Create Shipment
+const createShipmentRequest: CreateShipmentRequest = {
+  poNumber: 'PO-123456',
+  shipments: [                           // Required
+    {
+      trackingNumber: 'TRACK-123',
+      carrier: 'UPS',
+      shipDate: '2024-01-18T10:00:00Z',
+      lineItems: [
+        {
+          lineNumber: 1,
+          quantity: 2,
+          sku: 'SKU-789',
+        },
+      ],
+    },
+  ],
+};
 ```
 
-#### Pricing
+#### Pricing & Approvals
 
 ```typescript
 import {
+  // Approval types
+  PricingApprovalBatchRequest,
+  PricingApprovalItem,
   PricingApproval,
+
+  // History types
+  PricingHistoryQuery,
   PricingHistory,
   PriceChange,
+
+  // Config types
   PricingConfig,
+
+  // Enums
   ApprovalStatus,
 } from 'dsco-api';
+
+// Example: Pricing Approval Batch
+const approvalBatch: PricingApprovalBatchRequest = {
+  approvals: [
+    {
+      itemKey: 'SKU-789',
+      approvalId: 'APR-001',
+      action: 'approve',
+    },
+    {
+      itemKey: 'SKU-790',
+      approvalId: 'APR-002',
+      action: 'reject',
+      rejectionReason: 'Price too low',
+    },
+  ],
+};
 ```
 
 #### Invoice
 
 ```typescript
 import {
+  // Request types
+  CreateInvoiceRequest,
+  InvoiceResponse,
+
+  // Response types
   Invoice,
   InvoiceLineItem,
   InvoiceQuery,
+
+  // Identifiers
   InvoiceNumber,
 } from 'dsco-api';
+
+// Example: Create Invoice
+const createInvoiceRequest: CreateInvoiceRequest = {
+  invoiceId: 'INV-123456',               // Required
+  totalAmount: 59.98,                    // Required
+  poNumber: 'PO-123456',                 // One of poNumber, dscoOrderId, supplierOrderNumber required
+  invoiceDate: '2024-01-20T10:00:00Z',
+  currencyCode: 'USD',
+  lineItems: [
+    {
+      lineNumber: 1,
+      sku: 'SKU-789',
+      quantity: 2,
+      unitPrice: 29.99,
+      totalPrice: 59.98,
+    },
+  ],
+};
 ```
 
 #### Conversation
 
 ```typescript
 import {
+  // Request types
+  CreateConversationRequest,
+  UpdateConversationRequest,
+  AddConversationMessageRequest,
+
+  // Response types
   Conversation,
   Message,
+  ConversationQuery,
+
+  // Identifiers
   ConversationId,
   MessageId,
 } from 'dsco-api';
+
+// Example: Create Conversation
+const createConversationRequest: CreateConversationRequest = {
+  subject: 'Order Inquiry',
+  tradingPartnerId: 'TP-001',
+  poNumber: 'PO-123456',
+  initialMessage: 'When will this order ship?',
+  priority: 'normal',
+};
+
+// Example: Update Conversation
+const updateConversationRequest: UpdateConversationRequest = {
+  conversationId: 'CONV-123',
+  status: 'resolved',
+  assignedTo: 'user-456',
+};
 ```
 
 #### Trading Partners
 
 ```typescript
 import {
+  // Request types
+  SetTradingPartnerRequest,
+  TradingPartnerUpdateResponse,
+
+  // Response types
   TradingPartner,
   TradingPartnerProfile,
   SupplierCalendar,
-  TradingPartnerId,
+
+  // Supporting types
   Address,
   ContactInfo,
+  HolidayDate,
+
+  // Identifiers
+  TradingPartnerId,
 } from 'dsco-api';
+
+// Example: Set Trading Partner
+const setTradingPartnerRequest: SetTradingPartnerRequest = {
+  tradingPartnerId: 'TP-001',            // Required
+  companyName: 'ACME Corporation',
+  type: 'supplier',
+  status: 'active',
+  contactInfo: {
+    name: 'John Doe',
+    email: 'john@acme.com',
+    phone: '+1-555-0100',
+  },
+  address: {
+    street: '123 Main St',
+    city: 'Seattle',
+    state: 'WA',
+    postalCode: '98101',
+    country: 'US',
+  },
+};
 ```
 
 #### Warehouse
 
 ```typescript
 import {
+  // Request types
+  SetRetailerWarehouseCodesRequest,
+  RetailerWarehouseCode,
+  SetWarehouseCodesResponse,
+
+  // Response types
   Warehouse,
   RetailerWarehouse,
   WarehouseCodes,
   WarehouseCodeMapping,
+  WarehouseAddress,
+
+  // Identifiers
   WarehouseId,
   WarehouseCode,
 } from 'dsco-api';
+
+// Example: Set Retailer Warehouse Codes
+const setWarehouseCodesRequest: SetRetailerWarehouseCodesRequest = {
+  warehouseCodes: [                      // Required
+    {
+      warehouseCode: 'WH-001',           // Required
+      warehouseName: 'Main Warehouse',   // Required
+      tradingPartnerId: 'TP-001',
+      isDefault: true,
+      status: 'active',
+    },
+  ],
+};
 ```
 
 #### Catalog & Inventory
