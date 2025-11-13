@@ -1,4 +1,5 @@
 export { createCatalog } from './create-catalog';
+export { getCatalogById } from './get-catalog-by-id';
 export { batchSmallCatalog } from './batch-small-catalog';
 export { batchLargeCatalog } from './batch-large-catalog';
 export { getCatalogLog } from './get-catalog-log';

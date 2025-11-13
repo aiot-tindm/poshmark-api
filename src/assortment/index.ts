@@ -1,4 +1,5 @@
 export { createAssortment } from './create-assortment';
+export { listAssortments } from './list-assortments';
 export { getAssortment } from './get-assortment';
 export { updateAssortment } from './update-assortment';
 export { deleteAssortment } from './delete-assortment';
