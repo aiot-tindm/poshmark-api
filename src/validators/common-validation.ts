@@ -97,3 +97,32 @@ export type SuccessFailResponse = t.TypeOf<typeof SuccessFailResponseC>;
 export const IdParamC = t.union([t.string, t.number]);
 
 export type IdParam = t.TypeOf<typeof IdParamC>;
+
+/**
+ * Async update response codec
+ */
+export const AsyncUpdateResponseC = t.type({
+  status: t.union([t.literal('success'), t.literal('failure'), t.literal('pending')]),
+  requestId: t.string,
+  eventDate: t.string,
+});
+
+export type AsyncUpdateResponse = t.TypeOf<typeof AsyncUpdateResponseC>;
+
+/**
+ * Generic message response
+ */
+export const MessageResponseC = t.type({
+  message: t.string,
+});
+
+export type MessageResponse = t.TypeOf<typeof MessageResponseC>;
+
+/**
+ * Generic ID response
+ */
+export const IdResponseC = t.type({
+  id: t.string,
+});
+
+export type IdResponse = t.TypeOf<typeof IdResponseC>;

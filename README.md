@@ -237,21 +237,33 @@ const result = await concurrentRetryRequest(
 
 ## Type Safety
 
-All API requests and responses are fully typed using io-ts for runtime validation:
+The library provides comprehensive TypeScript types for all API operations:
 
 ```typescript
-import { CreateAssortmentRequest, CreateAssortmentResponse } from 'dsco-api';
+import {
+  Order,
+  Return,
+  Invoice,
+  DscoRequestConfig
+} from 'dsco-api';
 
-const request: CreateAssortmentRequest = {
-  name: 'My Assortment',
+// Full type safety for requests
+const order: Order = {
+  orderKey: 'ORD-123',
+  retailerOrderId: 'R-456',
+  items: [...],
 };
 
-const response: CreateAssortmentResponse = await createAssortment(
-  requestConfig,
-  request
-);
-// response is typed as: { id: string, name: string }
+// Full type safety for responses
+const createdOrder: Order = await createOrder(requestConfig, order);
 ```
+
+**📘 See [TYPES.md](./TYPES.md) for complete type documentation** including:
+- All available types and interfaces
+- Usage examples
+- Type safety levels
+- Best practices
+- Migration guide
 
 ## Configuration
 
