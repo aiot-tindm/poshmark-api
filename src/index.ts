@@ -23,6 +23,7 @@ export * from './shipping';
 export * from './trading-partners';
 export * from './conversation';
 export * from './invoice';
+export * from './utility';
 
 // Error Handling
 export * from './errors';
