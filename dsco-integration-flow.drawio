@@ -1,0 +1,330 @@
+<mxfile host="app.diagrams.net" modified="2025-11-13T00:00:00.000Z" agent="Claude" version="22.0.0">
+  <diagram id="dsco-flow" name="DSCO Integration Flow">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Title -->
+        <mxCell id="title" value="DSCO INTEGRATION FLOW - POSHMARK" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="20" width="600" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- FLOW 1: ITEM SYNC -->
+        <mxCell id="flow1-header" value="FLOW 1: ITEM SYNC (Supplier → DSCO → Poshmark)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1080" height="480" as="geometry"/>
+        </mxCell>
+        
+        <!-- Your System -->
+        <mxCell id="item-your-system" value="Your System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 1: Authenticate -->
+        <mxCell id="item-step1" value="1. Authenticate&#xa;POST /v3/oauth2/token" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="item-your-system" target="item-step1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 2: Prepare Catalog Data -->
+        <mxCell id="item-step2" value="2. Prepare Catalog Data&#xa;- supplierSku&#xa;- title, description&#xa;- brand, color, size&#xa;- images[]&#xa;- categoryPath&#xa;- extendedAttributes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="140" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="item-step1" target="item-step2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 3: Update Catalog -->
+        <mxCell id="item-step3" value="3. Update Catalog (Batch)&#xa;POST /v3/supplier/items/&#xa;catalog/batch/large&#xa;&#xa;Body: { items: [...] }" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="420" width="140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="item-step2" target="item-step3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DSCO API -->
+        <mxCell id="item-dsco" value="DSCO Platform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="120" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 4: Return ChangeLogId -->
+        <mxCell id="item-step4" value="4. Response&#xa;{ changeLogId: '...' }" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="420" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="item-step3" target="item-step4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 5: Async Processing -->
+        <mxCell id="item-step5" value="5. Async Processing&#xa;- Validate data&#xa;- Check compliance&#xa;- Process items" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="320" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="item-step4" target="item-step5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 6: Check Changelog -->
+        <mxCell id="item-step6" value="6. Check Result&#xa;GET /v3/supplier/&#xa;changelogs/{id}&#xa;&#xa;Response:&#xa;- successCount&#xa;- errorCount&#xa;- errors[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="540" width="140" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow6" value="Wait 2-5s" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="item-step3" target="item-step6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="530" as="sourcePoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Step 7: Update Inventory -->
+        <mxCell id="item-step7" value="7. Update Inventory&#xa;POST /v3/supplier/items/&#xa;inventory/batch/large&#xa;&#xa;Body: {&#xa;  items: [{&#xa;    supplierSku,&#xa;    quantityAvailable,&#xa;    warehouseCode&#xa;  }]&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="280" y="540" width="140" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow7" value="After catalog&#xa;success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="item-step6" target="item-step7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 8: Sync to Poshmark -->
+        <mxCell id="item-poshmark" value="Poshmark" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="480" y="120" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="item-step8" value="8. DSCO syncs to&#xa;Poshmark&#xa;&#xa;(Automatic)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="320" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="item-step5" target="item-step8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Step 9: Product Listed -->
+        <mxCell id="item-step9" value="9. Product Listed&#xa;on Poshmark&#xa;&#xa;✅ Visible to buyers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="440" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="item-arrow9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="item-step8" target="item-step9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Update Flow -->
+        <mxCell id="item-update" value="UPDATE FLOW&#xa;(Same endpoints)&#xa;&#xa;Changes:&#xa;- Price&#xa;- Quantity&#xa;- Description&#xa;- Images" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="200" width="140" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- Delete Flow -->
+        <mxCell id="item-delete" value="DELETE FLOW&#xa;(Set qty = 0)&#xa;&#xa;POST /v3/supplier/&#xa;items/inventory/&#xa;batch/large&#xa;&#xa;quantityAvailable: 0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="680" y="360" width="140" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- Notes -->
+        <mxCell id="item-notes" value="⚠️ NOTES:&#xa;• Catalog must exist before inventory update&#xa;• Use Large Batch for &gt;100 items&#xa;• Always check changelog status&#xa;• Images must be publicly accessible URLs&#xa;• Category path: &quot;Category||Subcategory||Item&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#FFB570;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="200" width="220" height="140" as="geometry"/>
+        </mxCell>
+        
+        <!-- FLOW 2: ORDER PROCESS -->
+        <mxCell id="flow2-header" value="FLOW 2: ORDER PROCESS (Poshmark → DSCO → Supplier)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="1080" height="560" as="geometry"/>
+        </mxCell>
+        
+        <!-- Poshmark Order -->
+        <mxCell id="order-poshmark" value="Poshmark" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="760" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="order-step1" value="1. Customer Order&#xa;on Poshmark&#xa;&#xa;Order created" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="80" y="840" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="order-poshmark" target="order-step1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DSCO receives order -->
+        <mxCell id="order-dsco" value="DSCO Platform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="760" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="order-step2" value="2. DSCO receives order&#xa;&#xa;Order pushed to&#xa;your stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="840" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="order-step1" target="order-step2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Your system gets order -->
+        <mxCell id="order-your-system" value="Your System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="480" y="760" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="order-step3" value="3. Create Stream&#xa;(One-time setup)&#xa;&#xa;POST /v3/supplier/&#xa;streams&#xa;&#xa;objectType: 'order'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="480" y="840" width="140" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow3" value="Setup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="order-your-system" target="order-step3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Poll for orders -->
+        <mxCell id="order-step4" value="4. Poll for Orders&#xa;(Continuous loop)&#xa;&#xa;GET /v3/supplier/&#xa;streams/{streamId}/&#xa;events&#xa;&#xa;Response: [{&#xa;  payload: {order}&#xa;}]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="480" y="980" width="140" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow4" value="Every 5-10s" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="order-step3" target="order-step4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Process order -->
+        <mxCell id="order-step5" value="5. Process Order&#xa;&#xa;- Validate inventory&#xa;- Create internal order&#xa;- Allocate stock&#xa;- Generate pick list" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="840" width="140" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="order-step4" target="order-step5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Acknowledge order -->
+        <mxCell id="order-step6" value="6. Acknowledge Order&#xa;&#xa;POST /v3/supplier/&#xa;orders/acknowledge&#xa;&#xa;Body: {&#xa;  orderIds: [...]&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="980" width="140" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="order-step5" target="order-step6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Update stream position -->
+        <mxCell id="order-step7" value="7. Update Position&#xa;&#xa;POST /v3/supplier/&#xa;streams/{streamId}/&#xa;position&#xa;&#xa;Body: {&#xa;  partitionId,&#xa;  position&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1120" width="140" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="order-arrow7" value="Mark as&#xa;processed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="order-step6" target="order-step7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Order data structure -->
+        <mxCell id="order-data" value="ORDER DATA:&#xa;{&#xa;  orderId,&#xa;  orderNumber,&#xa;  lineItems: [{&#xa;    supplierSku,&#xa;    quantity,&#xa;    unitPrice,&#xa;    lineItemId&#xa;  }],&#xa;  shippingAddress: {...},&#xa;  orderType: 'marketplace'&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#FFB570;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="840" width="220" height="200" as="geometry"/>
+        </mxCell>
+        
+        <!-- Order notes -->
+        <mxCell id="order-notes" value="⚠️ IMPORTANT:&#xa;• Poll stream every 5-10 seconds&#xa;• Always acknowledge orders&#xa;• Update stream position after processing&#xa;• Stream persists events for 90 days&#xa;• Can replay events if needed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#FFB570;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="1060" width="220" height="140" as="geometry"/>
+        </mxCell>
+        
+        <!-- FLOW 3: SHIPMENT -->
+        <mxCell id="flow3-header" value="FLOW 3: SHIPMENT PROCESS (Supplier → DSCO → Poshmark)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1320" width="1080" height="480" as="geometry"/>
+        </mxCell>
+        
+        <!-- Fulfill order -->
+        <mxCell id="ship-your-system" value="Your System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="1360" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ship-step1" value="1. Fulfill Order&#xa;&#xa;- Pick items&#xa;- Pack box&#xa;- Generate label&#xa;- Get tracking #" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1440" width="140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="ship-arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ship-your-system" target="ship-step1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Create shipment -->
+        <mxCell id="ship-step2" value="2. Create Shipment&#xa;&#xa;POST /v3/supplier/&#xa;orders/shipments&#xa;&#xa;Body: {&#xa;  orderId,&#xa;  trackingNumber,&#xa;  carrier,&#xa;  lineItems: [{&#xa;    lineItemId,&#xa;    quantity&#xa;  }]&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1560" width="140" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="ship-arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ship-step1" target="ship-step2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DSCO processes -->
+        <mxCell id="ship-dsco" value="DSCO Platform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="1360" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ship-step3" value="3. Process Shipment&#xa;&#xa;- Validate data&#xa;- Update order status&#xa;- Mark items shipped" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="1560" width="140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="ship-arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ship-step2" target="ship-step3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sync to Poshmark -->
+        <mxCell id="ship-poshmark" value="Poshmark" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="480" y="1360" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ship-step4" value="4. Sync to Poshmark&#xa;&#xa;- Send tracking info&#xa;- Update order status&#xa;- Notify customer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="1560" width="140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="ship-arrow4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ship-step3" target="ship-step4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Customer receives -->
+        <mxCell id="ship-step5" value="5. Customer Notified&#xa;&#xa;✅ Tracking email sent&#xa;✅ Order status updated&#xa;✅ Delivery tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="1680" width="140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="ship-arrow5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ship-step4" target="ship-step5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Batch shipment -->
+        <mxCell id="ship-batch" value="BATCH SHIPMENT:&#xa;&#xa;POST /v3/supplier/&#xa;orders/shipments/&#xa;batch/small&#xa;&#xa;Body: {&#xa;  shipments: [{...}, {...}]&#xa;}&#xa;&#xa;For multiple orders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1440" width="180" height="200" as="geometry"/>
+        </mxCell>
+        
+        <!-- Carrier codes -->
+        <mxCell id="ship-carriers" value="CARRIER CODES:&#xa;• USPS&#xa;• UPS&#xa;• FedEx&#xa;• DHL&#xa;• OnTrac&#xa;• LaserShip&#xa;&#xa;shipDate format:&#xa;ISO 8601&#xa;'2025-11-13T10:00:00Z'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#FFB570;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1660" width="180" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- Shipment notes -->
+        <mxCell id="ship-notes" value="⚠️ CRITICAL:&#xa;• Send shipment within 24-48 hours&#xa;• Always include tracking number&#xa;• Ship all line items or partial&#xa;• Update quantity if partial ship&#xa;• Can create multiple shipments per order&#xa;• Tracking updates automatically sync" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#FFB570;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="900" y="1440" width="200" height="160" as="geometry"/>
+        </mxCell>
+        
+        <!-- Cancel flow -->
+        <mxCell id="cancel-flow" value="CANCEL FLOW:&#xa;&#xa;POST /v3/supplier/&#xa;orders/items/cancel&#xa;&#xa;Body: {&#xa;  orderId,&#xa;  lineItemId,&#xa;  quantity,&#xa;  reason: 'OUT_OF_STOCK'&#xa;}&#xa;&#xa;Reasons:&#xa;• OUT_OF_STOCK&#xa;• CUSTOMER_REQUEST&#xa;• DAMAGED&#xa;• OTHER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="900" y="1620" width="200" height="180" as="geometry"/>
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend" value="LEGEND" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#e1e1e1;strokeColor=#666666;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1840" width="300" height="200" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-your" value="Your System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1880" width="100" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-dsco" value="DSCO Platform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1920" width="100" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-poshmark" value="Poshmark" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1960" width="100" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-action" value="Action/API Call" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="2000" width="100" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-desc1" value="= Your backend system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="1880" width="160" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-desc2" value="= DSCO API platform" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="1920" width="160" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-desc3" value="= Poshmark marketplace" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="1960" width="160" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend-desc4" value="= API request/process" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="2000" width="160" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- Summary -->
+        <mxCell id="summary" value="INTEGRATION SUMMARY" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#e1e1e1;strokeColor=#666666;verticalAlign=top;spacingTop=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1840" width="740" height="200" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="summary-text" value="1. ITEM SYNC: Push products to DSCO → Auto sync to Poshmark&#xa;   • Catalog API: Product details, images, categories&#xa;   • Inventory API: Stock quantities&#xa;   • Update/Delete: Same APIs (set qty=0 to delist)&#xa;&#xa;2. ORDER PROCESS: Poll DSCO stream for new orders → Process → Acknowledge&#xa;   • Stream API: Real-time order feed (poll every 5-10s)&#xa;   • Acknowledge API: Confirm order receipt&#xa;   • Update Position: Mark orders as processed&#xa;&#xa;3. SHIPMENT: Ship order → Send tracking to DSCO → Auto notify Poshmark&#xa;   • Shipment API: Tracking number, carrier, line items&#xa;   • Batch Support: Send multiple shipments&#xa;   • Cancel API: Handle out-of-stock/cancellations&#xa;&#xa;🔄 Full cycle: Sync Items → Receive Orders → Ship → Tracking Updates" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;spacingTop=15;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1875" width="700" height="150" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
